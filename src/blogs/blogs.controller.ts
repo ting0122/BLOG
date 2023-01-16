@@ -1,5 +1,6 @@
 import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { Body, Query } from '@nestjs/common/decorators';
+import { Body, Query, Redirect } from '@nestjs/common/decorators';
+import { CreateNewsDto } from './dtos/create-news.dto';
 
 @Controller('blogs')
 export class BlogsController {
@@ -15,11 +16,8 @@ export class BlogsController {
     }
 
     @Post()
-    create(
-        @Body('title') title: string,
-        @Body('description') description: string
-    ) {
-        return {title, description};
+    async create(@Body() createNewsDto : CreateNewsDto) {
+        return createNewsDto;
     }
 
     @Put(':id')
