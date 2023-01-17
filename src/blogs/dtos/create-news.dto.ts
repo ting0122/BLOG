@@ -1,4 +1,5 @@
 export class CreateNewsDto {
+    id : number ;
     title : string ;
-    description : number ;
+    description : string ;
 }

@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/users.entity';
 import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
+import { news } from './blogs/entity/news';
 
 @Module({
   imports: 
@@ -15,9 +16,9 @@ import { UsersModule } from './users/users.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'tr123456+++',
+      password: 'root',
       database: 'mydb',
-      entities: [User],
+      entities: [news],
       synchronize: true,
     }),
     UsersModule,
