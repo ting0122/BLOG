@@ -2,19 +2,17 @@ import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Body, Query, Redirect } from '@nestjs/common/decorators';
 import { CreateNewsDto } from './dtos/create-news.dto';
 import { BlogsService } from './blogs.service';
+import { DataSource } from 'typeorm';
+import { news } from './entity/news';
 
 @Controller('blogs')
 export class BlogsController {
     constructor(private blogsService : BlogsService){}
 
     @Get()
-    findAll(): string {
-        return 'you want to find something';
-    }
-
-    @Get(':id')
-    findOne(@Query('yourname') yourname:string){
-        return `you want to find ${yourname}`;
+    findOne(@Param('id') id:number){
+        console.log(id);
+        return this.blogsService.findNews(id);
     }
 
     @Post()

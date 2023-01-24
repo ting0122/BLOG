@@ -12,7 +12,12 @@ export class BlogsService {
         private blogsRepository : Repository<news>,
     ){}
 
+    async findNews(Id){
+        return this.blogsRepository.findOneBy(Id);
+    }
+
     async createNews(createNewsDto : CreateNewsDto) : Promise<news> {
         return this.blogsRepository.save(createNewsDto);
     }
+
 }
