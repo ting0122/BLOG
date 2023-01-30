@@ -4,14 +4,19 @@ import { CreateNewsDto } from './dtos/create-news.dto';
 import { BlogsService } from './blogs.service';
 import { DataSource } from 'typeorm';
 import { news } from './entity/news';
+import { UpdateNewsDto } from './dtos/update-news.dto';
 
 @Controller('blogs')
 export class BlogsController {
     constructor(private blogsService : BlogsService){}
 
     @Get()
+    findAll(){
+        return this.blogsService.findAll();
+    }
+
+    @Get(':id')
     findOne(@Param('id') id:number){
-        console.log(id);
         return this.blogsService.findNews(id);
     }
 
@@ -21,8 +26,8 @@ export class BlogsController {
     }
 
     @Put(':id')
-    update(): string {
-        return 'you want to update something';
+    async update(@Param('id') id:number,@Body() updateNewsDto:UpdateNewsDto){
+        return this.blogsService.updateNews(id,updateNewsDto);
     }
 
     @Delete(':id')
