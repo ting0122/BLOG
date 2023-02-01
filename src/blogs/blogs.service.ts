@@ -13,12 +13,12 @@ export class BlogsService {
         private blogsRepository : Repository<news>,
     ){}
 
-    async findAll(){
+    async findAllNews(){
         return this.blogsRepository.find();
     }
 
     async findNews(Id) : Promise<news> {
-        return this.blogsRepository.findOneOrFail(Id);
+        return this.blogsRepository.findOneBy({id : Id});
     }
 
     async createNews(createNewsDto : CreateNewsDto) : Promise<news> {
@@ -27,6 +27,12 @@ export class BlogsService {
 
     async updateNews(id:number ,updateNewsDTO:UpdateNewsDto){
         return this.blogsRepository.update(id,updateNewsDTO);
+    }
+
+    async delNews(id:number){
+        const newsToDel = await this.blogsRepository.findOneBy({id:id});
+        await this.blogsRepository.remove(newsToDel);
+        return 'Already removed';
     }
 
 }

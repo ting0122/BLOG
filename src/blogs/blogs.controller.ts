@@ -12,11 +12,11 @@ export class BlogsController {
 
     @Get()
     findAll(){
-        return this.blogsService.findAll();
+        return this.blogsService.findAllNews();
     }
 
-    @Get(':id')
-    findOne(@Param('id') id:number){
+    @Get(':userid')
+    findOne(@Param('userid') id:number){
         return this.blogsService.findNews(id);
     }
 
@@ -31,8 +31,8 @@ export class BlogsController {
     }
 
     @Delete(':id')
-    remove(): string {
-        return 'you want to remove something';
+    async remove(@Param('id') id:number){
+        return this.blogsService.delNews(id);
     }
 
 }
