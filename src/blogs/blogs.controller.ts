@@ -2,8 +2,6 @@ import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Body, Query, Redirect } from '@nestjs/common/decorators';
 import { CreateNewsDto } from './dtos/create-news.dto';
 import { BlogsService } from './blogs.service';
-import { DataSource } from 'typeorm';
-import { news } from './entity/news';
 import { UpdateNewsDto } from './dtos/update-news.dto';
 
 @Controller('blogs')

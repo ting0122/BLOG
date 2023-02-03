@@ -3,8 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BlogsModule } from './blogs/blogs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/users.entity';
-import { UsersController } from './users/users.controller';
+import { Users } from './users/entity/users';
 import { UsersModule } from './users/users.module';
 import { news } from './blogs/entity/news';
 
@@ -18,7 +17,7 @@ import { news } from './blogs/entity/news';
       username: 'postgres',
       password: 'root',
       database: 'mydb',
-      entities: [news],
+      entities: [news,Users],
       synchronize: true,
     }),
     UsersModule,
