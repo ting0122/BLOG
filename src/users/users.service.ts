@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Res } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AddUserDto } from './dtos/adduser.dto';
@@ -23,8 +23,8 @@ export class UsersService {
     async checkuser(checkUserDto:CheckUserDto){
         const user = this.usersRepository.findOneBy({name : checkUserDto.name});
         if((await user).password === checkUserDto.password)
-            return 'sign in success';
+            return 'success';
         else
-            return 'sign in fail';
+            return 'fail';
     }
 }
