@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Redirect, Req, Res, ValidationPipe } from 
 import { AddUserDto } from './dtos/adduser.dto';
 import { UsersService } from './users.service';
 import { CheckUserDto } from './dtos/checkuser.dto';
+import { BlogsController } from 'src/blogs/blogs.controller';
 
 @Controller('users')
 export class UsersController {
@@ -22,12 +23,13 @@ export class UsersController {
     async signin(@Res() res, @Req() req,@Body(new ValidationPipe()) checkUserDto:CheckUserDto){
         const result = this.userService.checkuser(checkUserDto);
         if(await result === 'success'){
-                req.session.visits = req.session.visits? req.session.visits+1:1 ;
-                console.log(req.session);
-                Redirect('localhost:3000/blogs');
+                req.session.visits = req.session.visits? req.session.visits+1:1;
+                console.log('sign in success');
+                res.redirect('/blogs');
         }
         else{
-                Redirect('/');
+                res.redirect('/');
+                return 'sign in failed';
         } 
     }
 }   

@@ -1,8 +1,9 @@
 import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { Body, Query, Redirect } from '@nestjs/common/decorators';
+import { Body, Query, Redirect, Req, Res } from '@nestjs/common/decorators';
 import { CreateNewsDto } from './dtos/create-news.dto';
 import { BlogsService } from './blogs.service';
 import { UpdateNewsDto } from './dtos/update-news.dto';
+import { request } from 'http';
 
 @Controller('blogs')
 export class BlogsController {
